@@ -6,7 +6,7 @@
 
 ---
 
-## 🌍 Visión y Propósito
+## Visión y Propósito
 
 Este proyecto nace con una misión primordial: **acercar y hacer comprensible la ciencia del cambio climático y el confort térmico en el Perú** a tomadores de decisiones, directivos del sector público y privado, proyectistas, arquitectos, ingenieros, comunidad académica y ciudadanía en general.
 
@@ -18,7 +18,7 @@ Esta plataforma une ambos mundos: **comunicación climática visual, intuitiva e
 
 ---
 
-## 🚀 La Plataforma Interactiva (Visor Web)
+## La Plataforma Interactiva (Visor Web)
 
 El visor interactivo disponible en [ibpsa-peru.github.io/Clima-Per-2080](https://ibpsa-peru.github.io/Clima-Per-2080/) integra en una experiencia web fluida y bilingüe (Español / Inglés) los siguientes componentes:
 
@@ -32,7 +32,7 @@ El visor interactivo disponible en [ibpsa-peru.github.io/Clima-Per-2080](https:/
 
 ---
 
-## 🔬 Respaldo Científico y Metodológico
+## Respaldo Científico y Metodológico
 
 Toda la plataforma se sustenta en una auditoría técnica profunda:
 
@@ -44,7 +44,7 @@ Toda la plataforma se sustenta en una auditoría técnica profunda:
 
 ---
 
-## 👤 Autoría, Dirección y Formulación Metodológica
+## Autoría, Dirección y Formulación Metodológica
 
 - **Autor Principal, Dirección de Investigación e Ingeniería de Prompts:**  
   **Abelardo Tomás Palacios Hurtado**  
@@ -60,7 +60,7 @@ Toda la plataforma se sustenta en una auditoría técnica profunda:
 
 ---
 
-## 📁 Estructura del Repositorio
+## Estructura del Repositorio
 
 - `Final Results/web/index.html` — Visor web interactivo optimizado para despliegue en GitHub Pages (autocontenido, bilingüe ES/EN).
 - `Final Results/INFORME_AUDITORIA_CLIMA_PERU.md` — Informe técnico completo y detallado de la auditoría.
@@ -70,7 +70,7 @@ Toda la plataforma se sustenta en una auditoría técnica profunda:
 
 ---
 
-## 🏛️ Historial de Versiones
+## Historial de Versiones
 
 | Versión | Fecha | Autor / Dirección Técnica | Asistencia IA | Descripción General |
 |---|---|---|---|---|
@@ -79,7 +79,7 @@ Toda la plataforma se sustenta en una auditoría técnica profunda:
 
 ---
 
-## ⚖️ Licencia y Citación Sugerida
+## Licencia y Citación Sugerida
 
 Este proyecto se distribuye bajo licencia **Creative Commons Atribución 4.0 Internacional (CC BY 4.0)**. Se permite su libre uso, distribución y adaptación para investigación, educación, políticas públicas y ejercicio profesional en arquitectura e ingeniería, siempre que se cite la fuente:
 
