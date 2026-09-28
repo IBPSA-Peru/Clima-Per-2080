@@ -1,0 +1,412 @@
+/* Visor de la auditoría climática — Hoja de estilo editorial de concurso.
+   Tipografía: Pila geométrica encabezada por Futura / Century Gothic.
+   Estética: Editorial contemporánea (Awwwards / NYT Climate / Information is Beautiful).
+   Sin encasillamientos rígidos: Superficies abiertas, micro-interacciones y transiciones fluidas. */
+
+:root{
+  --papel:#f4f1ea; --papel2:#ebe6dc; --papel-card:#ffffff;
+  --tinta:#12161f; --tinta2:#3d4657; --tinta3:#656f7e;
+  --linea:rgba(18,22,31,0.08); --linea2:rgba(18,22,31,0.16); --linea3:rgba(18,22,31,0.24);
+  --frio:#2b6f9e; --frio2:#5aa8cc; --tibio:#e8b04b; --calor:#e2622f; --calor2:#c1352a;
+  --calor-tx:#bd491a;
+  --acento:#1a4f6e; --alerta:#b3261e;
+  --f:Futura,'Futura PT','Century Gothic','Avenir Next',Avenir,'URW Gothic','Trebuchet MS',sans-serif;
+  --r:16px; --r-sm:10px;
+  --sombra-suave:0 4px 20px -2px rgba(18,22,31,0.03);
+  --sombra-flotante:0 12px 32px -4px rgba(18,22,31,0.08);
+  --ease-out:cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--papel);color:var(--tinta);font:16px/1.65 var(--f);overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;letter-spacing:.1px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+b,strong{font-weight:700}
+
+/* ── barra superior / masthead fijo ── */
+header.top{position:fixed;top:0;left:0;right:0;z-index:70;
+  background:rgba(244,241,234,0.86);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--linea);
+  transition:background .3s, border-color .3s}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:62px;gap:clamp(24px, 3.5vw, 56px)}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:default;user-select:none;flex-shrink:0;margin-right:clamp(32px, 4.5vw, 68px)}
+.marcaLogo{width:26px;height:26px;display:block;object-fit:contain;flex-shrink:0;transition:transform .3s var(--ease-out)}
+.marca:hover .marcaLogo{transform:scale(1.05)}
+.marcaTit{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;font-weight:700;color:var(--tinta);display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.marcaTit i{color:var(--calor-tx);font-style:normal}
+.marcaSep{color:var(--linea2);font-weight:300;font-size:13px;opacity:.75;margin:0 2px}
+.marcaOrg{color:var(--tinta2);font-weight:600;letter-spacing:1.4px}
+.migas{display:flex;gap:3px;align-items:center;margin-left:auto}
+.migas a{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--tinta3);
+  text-decoration:none;padding:6px 9px;border-radius:8px;transition:.22s var(--ease-out);font-weight:600;white-space:nowrap}
+.migas a:hover{color:var(--tinta);background:rgba(18,22,31,0.04)}
+.migas a.on{color:var(--papel);background:var(--acento);box-shadow:0 2px 8px rgba(26,79,110,0.25)}
+
+/* ── portada monumental ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:96px 0 64px;position:relative}
+.kicker{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--calor-tx);
+  font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+#hero h1{font-size:clamp(30px,3.4vw,46px);line-height:1.06;font-weight:700;letter-spacing:-1.6px;
+  max-width:14ch;margin-bottom:10px}
+#hero h1 em{font-style:normal;color:var(--calor-tx)}
+.subtit{font-size:clamp(14.5px,1.25vw,16.5px);color:var(--tinta2);max-width:42ch;
+  margin:20px 0 0;line-height:1.58}
+
+.grande{display:grid;grid-template-columns:repeat(2,auto);gap:20px clamp(18px,2vw,32px);
+  align-items:end;margin-top:32px;justify-content:start}
+.cifra .n{font-size:clamp(28px,2.8vw,38px);line-height:.88;font-weight:700;letter-spacing:-3px;
+  font-variant-numeric:tabular-nums;display:block;transition:color .4s}
+.cifra .u{font-size:clamp(14px,1.6vw,19px);letter-spacing:-1px;color:var(--tinta3);font-weight:700}
+.cifra .c{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--tinta3);
+  margin-top:12px;font-weight:600}
+.cifra.frio .n{color:var(--frio)} .cifra.calor .n{color:var(--calor)}
+.baja{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:var(--tinta3);
+  font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;display:flex;flex-direction:column;
+  align-items:center;gap:8px;animation:bob 2.6s infinite;cursor:pointer}
+@keyframes bob{0%,100%{transform:translate(-50%,0);opacity:.55}50%{transform:translate(-50%,7px);opacity:1}}
+
+/* ── capítulos editoriales ── */
+section{padding:104px 0;position:relative}
+body.anim section{opacity:0;transform:translateY(24px);
+  transition:opacity .75s var(--ease-out),transform .75s var(--ease-out)}
+body.anim section.vis,body.anim section#hero{opacity:1;transform:none}
+.cap{display:flex;align-items:baseline;gap:16px;margin-bottom:16px}
+.cap .num{font-size:12px;letter-spacing:2.8px;color:var(--calor-tx);font-weight:700}
+.cap .via{flex:1;height:1px;background:var(--linea2);opacity:.6}
+h2{font-size:clamp(28px,4.2vw,48px);line-height:1.06;font-weight:700;letter-spacing:-1.6px;
+  margin-bottom:18px;max-width:22ch}
+.lead{color:var(--tinta2);max-width:64ch;font-size:16.5px;margin-bottom:38px;line-height:1.6}
+.lead b{color:var(--tinta)}
+
+/* ── selectores modernos de horizonte y segmentos ── */
+.horiz{display:flex;gap:4px;background:rgba(18,22,31,0.04);border-radius:14px;padding:4px;
+  margin-bottom:16px}
+.horiz button{flex:1;border:0;background:none;cursor:pointer;
+  padding:15px 12px 13px;font:700 12.5px var(--f);letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--tinta3);border-radius:10px;transition:.25s var(--ease-out);position:relative}
+.horiz button:hover{color:var(--tinta);background:rgba(255,255,255,0.6)}
+.horiz button.on{background:#ffffff;color:var(--tinta);box-shadow:0 3px 12px rgba(18,22,31,0.06)}
+.horiz button small{display:block;font-size:10.5px;letter-spacing:.6px;text-transform:none;
+  opacity:.72;margin-top:3px;font-weight:600}
+
+.seg{display:inline-flex;background:rgba(18,22,31,0.04);border-radius:11px;padding:3px;gap:2px}
+.seg button{border:0;background:none;color:var(--tinta3);padding:8px 16px;border-radius:8px;
+  cursor:pointer;font:600 12.5px var(--f);transition:.22s var(--ease-out);letter-spacing:.4px}
+.seg button:hover{color:var(--tinta)}
+.seg button.on{background:#ffffff;color:var(--tinta);box-shadow:0 2px 8px rgba(18,22,31,0.06)}
+
+.pasos{display:inline-flex;border:1px solid var(--linea2);border-radius:11px;padding:3px;background:#ffffff;gap:2px}
+.pasoN{border:0;background:none;color:var(--tinta2);padding:7px 15px;border-radius:8px;
+  cursor:pointer;font:600 12.5px var(--f);transition:.2s var(--ease-out);letter-spacing:.3px}
+.pasoN:hover{color:var(--tinta);background:rgba(18,22,31,0.04)}
+.pasoN.on{background:var(--tinta);color:#ffffff;box-shadow:0 2px 8px rgba(18,22,31,0.2);font-weight:700}
+
+.ctrl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.nota{font-size:12.5px;color:var(--tinta3);max-width:46ch;line-height:1.55}
+.btn{border:1px solid var(--linea2);background:#fff;color:var(--tinta);padding:8px 16px;
+  border-radius:10px;cursor:pointer;font:600 12.5px var(--f);transition:.22s var(--ease-out);display:inline-flex;
+  align-items:center;gap:8px;letter-spacing:.3px}
+.btn:hover{border-color:var(--acento);color:var(--acento);transform:translateY(-1px);box-shadow:0 4px 12px rgba(26,79,110,0.1)}
+.btn svg{width:15px;height:15px}
+
+/* ── rejilla de ciudades: tarjetas abiertas tipo data tile ── */
+.rej{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tarj{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:20px;
+  cursor:pointer;transition:.28s var(--ease-out);position:relative;overflow:hidden;
+  box-shadow:var(--sombra-suave)}
+.tarj:hover{border-color:var(--linea2);transform:translateY(-3px);box-shadow:var(--sombra-flotante)}
+.tarj.on{border-color:var(--tinta);box-shadow:0 0 0 1.5px var(--tinta), var(--sombra-flotante);background:#fcfbf8}
+.tarj .cd{font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--tinta3);font-weight:700}
+.tarj .zn{font-size:11px;color:var(--tinta3);margin-top:2px}
+.tarj .tt{font-size:36px;font-weight:700;letter-spacing:-1.6px;margin-top:14px;
+  font-variant-numeric:tabular-nums;line-height:1;transition:color .4s}
+.tarj .tt span{font-size:16px;color:var(--tinta3);letter-spacing:-.5px}
+.tarj .dd{font-size:12.5px;font-weight:700;margin-top:8px;display:flex;align-items:center;gap:5px}
+.tarj .cinta{position:absolute;left:0;top:0;bottom:0;width:4px;transition:background .4s}
+
+/* ── superficies abiertas y visualización SVG ── */
+.panel{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:28px;
+  position:relative;overflow:hidden;box-shadow:var(--sombra-suave)}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+svg{display:block;width:100%;overflow:visible}
+.lbl{fill:var(--tinta3);font-size:11px;font-family:var(--f)}
+.lbl2{fill:var(--tinta2);font-size:12px;font-family:var(--f)}
+.val{fill:var(--tinta);font-size:12.5px;font-weight:700;font-family:var(--f)}
+.gl{stroke:var(--linea);stroke-width:1}
+.ax{stroke:var(--linea2);stroke-width:1}
+#mapa path.pais{fill:#ebe6dc;stroke:var(--linea2);stroke-width:1.2;
+  stroke-dasharray:4200;stroke-dashoffset:4200;transition:stroke-dashoffset 2.4s ease-out}
+section.vis #mapa path.pais{stroke-dashoffset:0}
+.est{cursor:pointer;transition:r .6s var(--ease-out),fill .6s}
+.halo{opacity:.2;transition:r .6s var(--ease-out),fill .6s}
+.enom{fill:var(--tinta2);font-size:11.5px;font-family:var(--f);pointer-events:none}
+rect.bar{transition:y .8s var(--ease-out),height .8s var(--ease-out),fill .5s}
+
+/* ── ficha bioclimática ── */
+.ficha h3{font-size:24px;font-weight:700;letter-spacing:-.8px}
+.ficha .zn{color:var(--calor-tx);font-size:11.5px;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:16px;display:block;font-weight:700}
+.fila{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;
+  border-bottom:1px solid var(--linea);font-size:13.5px;gap:14px}
+.fila:last-child{border:0}
+.fila span{color:var(--tinta2)}
+.fila b{font-variant-numeric:tabular-nums;font-weight:700;font-size:15.5px;white-space:nowrap}
+.fila b.up{color:var(--calor-tx)}
+
+/* ── plegables de auditoría (acordeón contemporáneo) ── */
+.pleg{border-top:1px solid var(--linea)}
+.pleg:last-of-type{border-bottom:1px solid var(--linea)}
+.pleg summary{padding:20px 8px;cursor:pointer;display:flex;align-items:center;gap:14px;
+  font-size:17.5px;font-weight:700;letter-spacing:-.4px;list-style:none;border-radius:8px;
+  transition:background .2s, color .2s}
+.pleg summary::-webkit-details-marker{display:none}
+.pleg summary .mas{width:18px;height:18px;flex:0 0 18px;position:relative;transition:transform .3s var(--ease-out)}
+.pleg summary .mas::before,.pleg summary .mas::after{content:'';position:absolute;background:var(--calor-tx);
+  transition:.3s var(--ease-out)}
+.pleg summary .mas::before{left:0;right:0;top:8.5px;height:1.6px}
+.pleg summary .mas::after{top:0;bottom:0;left:8.5px;width:1.6px}
+.pleg[open] summary .mas{transform:rotate(90deg)}
+.pleg[open] summary .mas::after{transform:scaleY(0)}
+.pleg summary:hover{color:var(--acento);background:rgba(18,22,31,0.02)}
+.pleg .cuerpo{padding:0 8px 24px 34px;color:var(--tinta2);font-size:15px;max-width:72ch;
+  animation:despl .4s var(--ease-out)}
+@keyframes despl{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.pleg .cuerpo p+p{margin-top:12px}
+.veredicto{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1.5px;
+  text-transform:uppercase;font-weight:700;padding:4px 11px;border-radius:20px;margin-left:auto}
+.si{background:#e2eedf;color:#276220} .no{background:#f8dfdc;color:var(--alerta)}
+.mas_menos{background:#faeed6;color:#855c0e}
+
+/* ── avisos y callouts ── */
+.aviso{border-left:3px solid var(--calor-tx);background:#ffffff;padding:20px 24px;border-radius:0 12px 12px 0;
+  margin-top:26px;box-shadow:var(--sombra-suave)}
+.aviso h4{font-size:15px;margin-bottom:6px;font-weight:700;letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
+.aviso h4 svg{width:18px;height:18px;flex:0 0 18px}
+.aviso.rojo h4 svg{stroke:var(--alerta)}
+.aviso p{font-size:14px;color:var(--tinta2);line-height:1.55}
+.aviso.rojo{border-left-color:var(--alerta)}
+
+.tip{position:fixed;background:var(--tinta);color:var(--papel);padding:10px 15px;border-radius:8px;
+  font:600 12px var(--f);pointer-events:none;opacity:0;transition:opacity .15s;z-index:99;
+  white-space:nowrap;box-shadow:0 12px 32px rgba(18,22,31,.24);letter-spacing:.3px}
+footer{padding:56px 0 72px;border-top:1px solid var(--linea);color:var(--tinta3);font-size:12.5px}
+footer code{font-family:ui-monospace,monospace;color:var(--tinta2);font-size:11.5px}
+
+/* ── portada: visual animado del sol ── */
+#heroViz{width:100%;max-width:860px;animation:aparece 1s var(--ease-out)}
+#heroViz svg{overflow:visible;width:100%;height:auto;aspect-ratio:1/1}
+.heroGrid{display:grid;grid-template-columns:minmax(260px,.62fr) minmax(520px,1.38fr);
+  gap:clamp(18px,2.6vw,44px);align-items:center}
+.solCol{display:flex;flex-direction:column;align-items:center;gap:14px}
+.solCtrl{display:inline-flex;background:rgba(18,22,31,0.04);border-radius:11px;
+  padding:3px;gap:2px;flex-wrap:wrap;justify-content:center}
+.solBtn,.solPlay{border:0;background:none;color:var(--tinta3);padding:8px 14px;border-radius:8px;
+  cursor:pointer;font:700 12px var(--f);letter-spacing:1.1px;transition:.22s var(--ease-out)}
+.solBtn:hover,.solPlay:hover{color:var(--tinta);background:rgba(255,255,255,0.7)}
+.solBtn.on{background:#ffffff;color:var(--tinta);box-shadow:0 2px 8px rgba(18,22,31,0.06)}
+.solPlay{border-left:1px solid var(--linea);letter-spacing:.6px;font-weight:600}
+.solPie{font-size:12px;color:var(--tinta3);text-align:center;max-width:48ch;line-height:1.55}
+
+/* ── selectores de ciudad para hero y nube ── */
+.ciudCtrl{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:16px 0 10px}
+.ciudCtrl .lbl{font-size:11.5px;font-weight:700;color:var(--tinta3);margin-right:4px;text-transform:uppercase;letter-spacing:.8px}
+.ciudBtn{border:1px solid var(--linea2);background:#ffffff;color:var(--tinta2);padding:6px 12px;border-radius:20px;
+  cursor:pointer;font:600 12px var(--f);letter-spacing:.4px;transition:.2s var(--ease-out)}
+.ciudBtn:hover{border-color:var(--tinta);color:var(--tinta);transform:translateY(-1px)}
+.ciudBtn.on{background:var(--tinta);color:#ffffff;border-color:var(--tinta);box-shadow:0 2px 8px rgba(18,22,31,0.2)}
+
+/* ── glosario conceptual: tarjetas de texto sintético y limpio ── */
+.glosarioGrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.glosCard{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:24px 28px;box-shadow:var(--sombra-suave);transition:.25s var(--ease-out);display:flex;flex-direction:column}
+.glosCard:hover{transform:translateY(-2px);box-shadow:var(--sombra-flotante);border-color:var(--linea2)}
+.glosCard h4{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--tinta)}
+.glosCard p{font-size:13.5px;color:var(--tinta2);line-height:1.52;margin-bottom:8px}
+.glosCard p:last-child{margin-bottom:0}
+.glosCard p b{color:var(--tinta)}
+
+/* ── método: línea editorial de seis pasos ── */
+.pasosGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:20px}
+.pasoCard{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:24px;transition:.28s var(--ease-out);
+  box-shadow:var(--sombra-suave);display:flex;flex-direction:column}
+.pasoCard:hover{border-color:var(--linea2);transform:translateY(-3px);box-shadow:var(--sombra-flotante)}
+.pasoCardTop{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.pasoBadge{width:30px;height:30px;border-radius:50%;color:#fff;display:flex;align-items:center;
+  justify-content:center;font-weight:700;font-size:13px;flex:0 0 30px}
+.pasoCardTop h4{font-size:16.5px;font-weight:700;color:var(--tinta);letter-spacing:-.3px}
+.pasoDesc{font-size:13.5px;color:var(--tinta2);line-height:1.5;margin-bottom:14px}
+.pasoTabla{border-top:1px solid var(--linea);padding-top:10px;margin-bottom:14px;flex-grow:1}
+.pasoFila{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;font-size:12.5px;gap:10px;
+  border-bottom:1px dashed var(--linea)}
+.pasoFila span{color:var(--tinta3)}
+.pasoFila b{color:var(--tinta);font-weight:700;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.pasoAudit{background:var(--papel);border-left:3px solid var(--calor-tx);padding:10px 14px;
+  border-radius:0 6px 6px 0;font-size:12.5px;color:var(--tinta2);line-height:1.45}
+
+/* ── icono de portada animado ── */
+.kicker .solanim{width:24px;height:24px;stroke:var(--calor-tx);fill:none;stroke-width:1.5;
+  stroke-linecap:round;overflow:visible}
+.kicker .solanim .nucleo{fill:rgba(226,98,47,.14)}
+.kicker .solanim .rayos{transform-origin:12px 12px;animation:gira 26s linear infinite}
+.kicker .solanim .onda{stroke:var(--frio);stroke-width:1.3;animation:vaiven 4.5s ease-in-out infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+@keyframes vaiven{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(-1.6px);opacity:1}}
+
+/* ── leyendas conmutables ── */
+.cgLeg{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin:2px 0 12px}
+.cgChip{border:1px solid var(--linea);background:#fff;color:var(--tinta3);padding:6px 12px;
+  border-radius:20px;cursor:pointer;font:700 11.5px var(--f);letter-spacing:.6px;transition:.22s;
+  display:inline-flex;align-items:center;gap:7px;opacity:.55}
+.cgChip i{width:10px;height:10px;border-radius:50%;display:inline-block;transition:.22s}
+.cgChip:hover{border-color:var(--linea2);opacity:.85}
+.cgChip.on{opacity:1;color:var(--tinta);border-color:var(--tinta);background:#fff;box-shadow:0 2px 6px rgba(18,22,31,0.06)}
+.cgChip.todos{opacity:1;color:var(--tinta3);font-weight:600}
+.cgChip.todos:hover{color:var(--acento);border-color:var(--acento)}
+.cgPista{font-size:11.5px;color:var(--tinta3);margin-left:6px}
+
+.cgInfo{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start;margin-top:16px;
+  padding-top:14px;border-top:1px solid var(--linea)}
+.cgGuia{display:flex;flex-direction:column;gap:8px;font-size:12.5px;color:var(--tinta2)}
+.cgGuia span{display:flex;align-items:center;gap:8px}
+.cgRangos{display:flex;gap:22px;flex-wrap:wrap}
+.cgRango{border-left:3px solid var(--c);padding-left:11px;font-size:12.5px}
+.cgRango b{display:block;color:var(--c);font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase}
+.cgRango span{display:block;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.cgRango em{display:block;font-style:normal;color:var(--tinta3);font-size:11.5px;margin-top:2px}
+
+.nbLeg{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:12px 0 0}
+.nbChip{border:1px solid var(--linea);background:#fff;color:var(--tinta2);padding:5px 11px;
+  border-radius:20px;cursor:pointer;font:600 11.5px var(--f);transition:.2s;
+  display:inline-flex;align-items:center;gap:6px}
+.nbChip i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.nbChip:hover{border-color:var(--linea2);color:var(--tinta)}
+.nbChip.on{background:var(--tinta);color:var(--papel);border-color:var(--tinta)}
+.nbChip.off{opacity:.45}
+.nbChip.todos{font-weight:700;color:var(--acento)}
+.nbPunto{font-size:12.5px;color:var(--tinta2);background:var(--papel);border-radius:9px;
+  padding:11px 15px;margin-top:12px;line-height:1.55}
+.nbPunto b{color:var(--tinta)}
+
+.brCab{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-bottom:12px;font-size:12.5px;color:var(--tinta3)}
+.brOrd{display:flex;align-items:center;gap:9px}
+#brSort{padding:2px;background:rgba(18,22,31,0.04);border-radius:8px}
+#brSort button{border:0;background:none;color:var(--tinta3);padding:5px 11px;border-radius:6px;
+  cursor:pointer;font:600 12px var(--f);transition:.2s}
+#brSort button:hover{color:var(--tinta)}
+#brSort button.on{background:#fff;color:var(--tinta);box-shadow:0 1px 4px rgba(18,22,31,0.08)}
+
+/* ── marco global IPCC y mapa interactivo ── */
+.ipccCtrl{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0 16px}
+.ipccPanel{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:26px 30px;box-shadow:var(--sombra-suave)}
+.ipccMapHeader{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:14px;margin-bottom:12px;min-height:74px}
+.ipccMapHeader > div:first-child{flex:1;min-width:280px}
+.ipccMapHeader h3{font-size:18.5px;font-weight:700;color:var(--tinta);letter-spacing:-.3px;margin:0}
+.ipccMapHeader p{font-size:13px;color:var(--tinta2);margin-top:4px;min-height:36px}
+.ipccGlobalBadge{background:var(--papel);border:1px solid var(--linea);padding:7px 15px;border-radius:10px;display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.ipccGlobalBadge .lbl{font-size:11px;font-weight:700;color:var(--tinta3);text-transform:uppercase;letter-spacing:.6px}
+.ipccGlobalBadge b{font-size:20px;font-weight:800;color:var(--calor-tx);font-variant-numeric:tabular-nums}
+#ipccWorldMap{width:100%;max-width:960px;margin:0 auto;overflow:hidden}
+#ipccWorldMap svg{width:100%;height:auto;display:block}
+.ipccPin{cursor:pointer}
+.ipccPin .pinOuter{transition:r .2s, fill .2s, opacity .2s; fill:rgba(18,22,31,.25)}
+.ipccPin:hover .pinOuter, .ipccPin.on .pinOuter{r:13px; fill:var(--acento); opacity:.7}
+.ipccPin .pinCore{transition:stroke .2s, stroke-width .2s}
+.ipccPin:hover .pinCore, .ipccPin.on .pinCore{stroke:#fff; stroke-width:2.4px}
+.ipccPinBox{background:var(--papel);border-left:3px solid var(--acento);border-radius:0 10px 10px 0;padding:14px 20px;margin-top:16px;font-size:13px;color:var(--tinta2);line-height:1.55;transition:.25s var(--ease-out)}
+.ipccPinBox.activo{background:#fdfbf7;color:var(--tinta);border-left-color:var(--calor-tx)}
+.ipccPinBox b{color:var(--tinta)}
+.ipccBarraWrap{margin-top:18px;display:flex;flex-direction:column;gap:5px}
+.ipccBarraWrap .lbl{font-size:11px;font-weight:700;color:var(--tinta3);letter-spacing:.5px;text-transform:uppercase}
+.ipccBarra{height:10px;border-radius:5px;background:linear-gradient(to right, #fae27a, #f7b34e, #ea7930, #d94326, #b01b22, #7a0c20, #4c0326)}
+.ipccBarraNums{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--tinta3);font-variant-numeric:tabular-nums}
+
+.sspGrid{display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;margin-top:20px}
+.sspCard{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:20px;transition:.25s var(--ease-out);box-shadow:var(--sombra-suave)}
+.sspCard:hover{transform:translateY(-2px);box-shadow:var(--sombra-flotante)}
+.sspCard.on{border-color:var(--tinta);box-shadow:0 0 0 1.5px var(--tinta), var(--sombra-flotante);background:#fcfbf8}
+.sspCard h5{font-size:14.5px;font-weight:700;margin-bottom:6px}
+.sspCard .sspCo2{font-size:12px;color:var(--tinta3);margin-bottom:8px;font-variant-numeric:tabular-nums}
+.sspCard p{font-size:12.5px;color:var(--tinta2);line-height:1.48}
+
+/* ── sección didáctica de impacto (+1 °C, +1.5 °C, +2 °C, +3 °C) ── */
+.impCtrl{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 18px}
+.impBtn{background:#ffffff;border:1px solid var(--linea2);border-radius:24px;padding:8px 18px;font:700 12.5px var(--f);color:var(--tinta2);cursor:pointer;display:flex;align-items:center;gap:8px;transition:.24s var(--ease-out);box-shadow:var(--sombra-suave)}
+.impBtn:hover{border-color:var(--tinta);color:var(--tinta);transform:translateY(-1px)}
+.impBtn.on{border-color:var(--tinta);background:var(--tinta);color:#ffffff;box-shadow:0 4px 14px rgba(18,22,31,0.15)}
+.impBtnBadge{font-size:14px;font-weight:800;padding:2px 7px;border-radius:12px;font-variant-numeric:tabular-nums;background:rgba(255,255,255,0.2)}
+.impBtn.on .impBtnBadge{background:#ffffff;color:var(--tinta)}
+
+.impHeaderBox{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:18px 24px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;box-shadow:var(--sombra-suave)}
+.impHeaderBox h3{font-size:18px;font-weight:700;color:var(--tinta);margin:0}
+.impHeaderBox p{font-size:13.5px;color:var(--tinta2);margin-top:3px}
+.impHeaderBadge{font-size:20px;font-weight:800;padding:4px 14px;border-radius:10px;font-variant-numeric:tabular-nums}
+
+.impGrid3{display:grid;grid-template-columns:repeat(3, 1fr);gap:22px}
+.impColCard{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:24px 26px;display:flex;flex-direction:column;box-shadow:var(--sombra-suave);transition:.28s var(--ease-out)}
+.impColCard:hover{transform:translateY(-3px);box-shadow:var(--sombra-flotante);border-color:var(--linea2)}
+.impColCard h4{font-size:16px;font-weight:700;color:var(--tinta);margin:0 0 6px}
+.impColCard .impColEstado{font-size:12px;font-weight:600;color:var(--acento);margin-bottom:18px;line-height:1.4;padding-bottom:12px;border-bottom:1px solid var(--linea)}
+.impUl{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.impLi{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--tinta2);line-height:1.52}
+.impLiDot{width:6px;height:6px;border-radius:50%;background:var(--acento);margin-top:6px;flex-shrink:0}
+.impLi b{color:var(--tinta)}
+
+/* ── sección 06: conclusiones ejecutivas y alcance ── */
+.conclusionesGrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.concCard{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:28px 32px;
+  box-shadow:var(--sombra-suave);transition:.28s var(--ease-out);position:relative;display:flex;flex-direction:column}
+.concCard:hover{transform:translateY(-3px);box-shadow:var(--sombra-flotante);border-color:var(--linea2)}
+.concCard.aportes{border-top:3.5px solid var(--acento)}
+.concCard.limites{border-top:3.5px solid var(--calor-tx)}
+
+.concHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;
+  padding-bottom:14px;border-bottom:1px solid var(--linea)}
+.concHeader h3{font-size:17px;font-weight:700;color:var(--tinta);letter-spacing:-.3px;margin:0}
+.concBadge{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 12px;border-radius:20px;white-space:nowrap}
+.concBadge.si{background:#e8f2f8;color:var(--acento)}
+.concBadge.no{background:#faeed6;color:#96550b}
+
+.concLista{display:flex;flex-direction:column;gap:16px;margin:0;padding:0;list-style:none}
+.concItem{display:flex;gap:14px;align-items:flex-start;font-size:13.5px;color:var(--tinta2);line-height:1.52;
+  padding-bottom:14px;border-bottom:1px dashed var(--linea)}
+.concItem:last-child{padding-bottom:0;border-bottom:none}
+.concNum{width:22px;height:22px;border-radius:6px;font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.concCard.aportes .concNum{background:rgba(26,79,110,0.08);color:var(--acento)}
+.concCard.limites .concNum{background:rgba(226,98,47,0.1);color:var(--calor-tx)}
+.concBody strong{display:block;color:var(--tinta);font-size:14px;margin-bottom:3px;font-weight:700}
+.concBody p{margin:0;color:var(--tinta2)}
+
+/* ── fuentes y referencias bibliográficas formato APA 7ma Edición ── */
+.apaWrap{background:#ffffff;border:1px solid var(--linea);border-radius:var(--r);padding:28px 32px;margin-top:18px;box-shadow:var(--sombra-suave)}
+.apaLista{display:flex;flex-direction:column;gap:14px;margin:0;padding:0;list-style:none}
+.apaItem{font-size:12.5px;color:var(--tinta2);line-height:1.6;padding-left:26px;text-indent:-26px}
+.apaItem em{font-style:italic;color:var(--tinta);font-weight:600}
+.apaItem a{color:var(--acento);text-decoration:none;word-break:break-all}
+.apaItem a:hover{text-decoration:underline}
+
+@media(max-width:980px){
+  .rej{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+  .migas{display:none}
+  section{padding:72px 0}
+  .heroGrid{grid-template-columns:1fr}
+  .solCol{order:-1}
+  .impGrid3{grid-template-columns:1fr}
+  .pasosGrid{grid-template-columns:1fr}
+  .sspGrid{grid-template-columns:1fr 1fr}
+  .conclusionesGrid{grid-template-columns:1fr;gap:24px}
+  .glosarioGrid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .sspGrid{grid-template-columns:1fr}
+  .horiz{flex-wrap:wrap}.horiz button{flex:1 1 44%}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  section,#heroViz,#metodoDet,.pleg .cuerpo{opacity:1!important;transform:none!important}
+}
+

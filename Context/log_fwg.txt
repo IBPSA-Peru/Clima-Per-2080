@@ -1,0 +1,70 @@
+=== Verificacion FWG 26/07/2026 14:06:53.96 === 
+ 
+--- [1] JAVA --- 
+openjdk version "17.0.19" 2026-04-21 LTS
+OpenJDK Runtime Environment Microsoft-13877129 (build 17.0.19+10-LTS)
+OpenJDK 64-Bit Server VM Microsoft-13877129 (build 17.0.19+10-LTS, mixed mode, sharing)
+C:\Program Files\Microsoft\jdk-17.0.19.10-hotspot\bin\java.exe
+ 
+--- [2] BUSQUEDA DEL JAR --- 
+ENCONTRADO: C:\Users\Usuario\Downloads\FutureWeatherGenerator_v4.2.0.jar 
+ 
+JAR EN USO: C:\Users\Usuario\Downloads\FutureWeatherGenerator_v4.2.0.jar 
+TAMANO BYTES: 3680843597 
+ 
+--- [3] AYUDA DEL JAR (-h) --- 
+2026-07-26 14:06:54 [INFO   ] FWGLogger: FWG Logging system initialized (console only)
+2026-07-26 14:06:54 [INFO   ] Main: Command-line arguments provided. Running in CLI mode.
+2026-07-26 14:06:54 [INFO   ] Main: Starting CLI mode with 1 arguments.
+2026-07-26 14:06:54 [SEVERE ] FutureWeatherGenerator: Error: Missing required arguments.
+Future Weather Generator - Dynamic Argument Parser
+
+Application Modes:
+  GUI Mode:  java -jar FutureWeatherGenerator_Europev4.2.0.jar
+             (No arguments = Graphical User Interface)
+  CLI Mode:  java -jar FutureWeatherGenerator_Europev4.2.0.jar [options]
+             (With arguments = Command Line Interface)
+
+CLI Actions:
+  -c                    Compare two EPW files
+  -g                    Generate future weather (default)
+  -u                    Apply urban heat island effect
+
+Required Arguments:
+  -epw=<path>           Path to EPW file
+  -epw2=<path>          Path to second EPW file (for comparison)
+
+Optional Arguments:
+  -output_type=<type>   Output file type (EPW, SPAIN_MET, PORTUGAL_CSV) [default: EPW]
+  -models=<models>      Comma-separated list of models [default: all models]
+  -ensemble=<bool>      Enable ensemble mode [default: true]
+  -temp_shift_winter=<value> Winter temperature shift [default: 0.0]
+  -temp_shift_summer=<value> Summer temperature shift [default: 0.0]
+  -smooth_hours=<hours>       Hours to smooth transitions [default: 72]
+  -output_folder=<path> Output folder path [default: <epw_directory>/output/, auto-created]
+  -model_unzipped_folder=<path> Folder to cache unzipped CMIP6 model data [default: same as output_folder]
+  -multithread=<bool>   Enable multithreading [default: true]
+  -grid_interpolation_method=<method>        Grid interpolation method (IDW, BI, AVG4P, NP) [default: IDW]
+  -epw_dictionary_limits=<bool>        Apply EPW variable limits [default: true]
+  -solar_correction=<option>       Solar hour adjustment (None, By_Month, By_Day) [default: By_Month]
+  -diffuse_method=<model>      Diffuse irradiation model (Ridley_Boland_Lauret_2010, Engerer_2015, Paulescu_Blaga_2019) [default: Engerer_2015]
+  -uhi=<enabled:orig:target> UHI effect parameters [default: false:1:1]
+  -save_epw_comparison=<bool> Save EPW comparison file [default: true]
+  -save_errors_warnings=<bool> Save errors and warnings log file [default: true]
+  -save_model_variables=<bool> Save GCM variables table file [default: true]
+
+Examples:
+  # Launch GUI mode (no arguments)
+  java -jar FutureWeatherGenerator_Europev4.2.0.jar
+
+  # CLI examples:
+  java -jar FutureWeatherGenerator_v4.2.0.jar -epw=weather.epw -models=BCC_CSM2_MR,CanESM5 -ensemble=true
+  java -jar FutureWeatherGenerator_v4.2.0.jar -c -epw=file1.epw -epw2=file2.epw -output_folder=./results/
+  java -jar FutureWeatherGenerator_v4.2.0.jar -u -epw=weather.epw -output_type=EPW -uhi=true:1:3
+2026-07-26 14:06:54 [SEVERE ] Main: Invalid arguments: Missing required arguments
+ 
+--- [4] SIN ARGUMENTOS: NO SE PRUEBA --- 
+Segun hallazgo previo, sin argumentos abre GUI y se queda esperando. 
+No se ejecuta esa variante a proposito. 
+ 
+=== Fin 26/07/2026 14:06:54.85 === 
