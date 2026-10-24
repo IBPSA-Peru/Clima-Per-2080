@@ -206,7 +206,7 @@ La costa peruana tiene persistencia altísima (0.96–0.98) y rango diario peque
 ## 7. Referencias y procedencia
 
 - **Archivos TMYx:** climate.onebuilding.org, región WMO 3 South America, carpeta PER_Peru. Descarga directa sin credenciales, 26 de julio de 2026. Manifiesto completo con URL por archivo en `Data/manifiesto_descarga_v1.csv`.
-- **Future Weather Generator v4.2.0**, ADAI / Universidade de Coimbra, future-weather-generator.adai.pt. Licencia CC BY-NC-SA. Ayuda de línea de comandos completa en `Context/log_fwg.txt`.
+- **Future Weather Generator v4.2.0**, ADAI / Universidade de Coimbra (Rodrigues et al., 2023, DOI: [10.1016/j.buildenv.2023.110104](https://doi.org/10.1016/j.buildenv.2023.110104); repositorio oficial: [Bitbucket cling-project/futureweathergenerator](https://bitbucket.org/cling-project/futureweathergenerator) / plataforma: [futureweather.co](https://futureweather.co)). Licencia CC BY-NC-SA. Ayuda de línea de comandos completa en `Context/log_fwg.txt`.
 - **CMIP6**, ensemble de 23 modelos empaquetados en el JAR de FWG.
 - **Magnus-Tetens** para presión de saturación de vapor; razón de mezcla en g/kg de aire seco.
 - **Meteonorm 8.0.2**, valores citados desde el enunciado del proyecto, **no verificados en esta auditoría**.
